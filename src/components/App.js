@@ -25,7 +25,6 @@ class App extends React.Component {
   //     .then(res => res.json())
   //     .then(data => this.setState({pets: data}))
   // }
-
   fetchPets = () => {
     let endpoint = '/api/pets';
 
