@@ -14,17 +14,39 @@ class App extends React.Component {
       }
     }
   }
-  onChangeType() {
-    this.setState({ filters: { ...this.state.filters } });
-    }
-  onFindPetsClick(){
-    const URL = '/api/pets';
-    const URLP = `/api/pets?type=${this.state.filters.type}`;
+  // onChangeType() {
+  //   this.setState({ filters: { ...this.state.filters } });
+  //   }
+  // onFindPetsClick(){
+  //   const URL = '/api/pets';
+  //   const URLP = `/api/pets?type=${this.state.filters.type}`;
+  // 
+  //   this.state.filters.type !== 'all'?  fetch(URLP): fetch(URL)
+  //     .then(res => res.json())
+  //     .then(data => this.setState({pets: data}))
+  // }
+  // onAdoptPet = petId => {
+  //   const pets = this.state.pets.map(p => {
+  //     return p.id === petId ? { ...p, isAdopted: true } : p;
+  //   });
+  //   this.setState({ pets: pets });
+  // };
+  fetchPets = () => {
+    let endpoint = '/api/pets';
 
-    this.state.filters.type !== 'all'?  fetch(URLP): fetch(URL)
+    if (this.state.filters.type !== 'all') {
+      endpoint += `?type=${this.state.filters.type}`;
+    }
+
+    fetch(endpoint)
       .then(res => res.json())
-      .then(data => this.setState({pets: data}))
-  }
+      .then(pets => this.setState({ pets: pets }));
+  };
+
+  onChangeType = ({ target: { value } }) => {
+    this.setState({ filters: { ...this.state.filters, type: value } });
+  };
+
   onAdoptPet = petId => {
     const pets = this.state.pets.map(p => {
       return p.id === petId ? { ...p, isAdopted: true } : p;
