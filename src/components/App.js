@@ -46,7 +46,7 @@ class App extends React.Component {
   // onChangeType = ({ target: { value } }) => {
   //   this.setState({ filters: { ...this.state.filters, type: value } });
   // };
-  // 
+  //
   // onAdoptPet = petId => {
   //   const pets = this.state.pets.map(p => {
   //     return p.id === petId ? { ...p, isAdopted: true } : p;
